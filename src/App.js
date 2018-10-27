@@ -6,12 +6,12 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <>
-      <Search onSearch={setSearchTerm} />
+    <div>
+      <Search onSearch={setSearchTerm} searchTerm={searchTerm} />
       <Suspense maxDuration={300} fallback={"loading..."}>
         <AlbumList searchTerm={searchTerm} />
       </Suspense>
-    </>
+    </div>
   );
 };
 

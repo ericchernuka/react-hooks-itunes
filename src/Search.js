@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import useFormInput from "./hooks/useFormInput";
 
-const Search = ({ onSearch }) => {
-  const [inputValue, setInput] = useState("");
-
-  function handleInputChange(e) {
-    setInput(e.target.value);
-  }
+const Search = ({ onSearch, searchTerm }) => {
+  const searchInput = useFormInput(searchTerm);
 
   function handleSearch(e) {
     e.preventDefault();
-    onSearch(inputValue);
+    onSearch(searchInput.value);
   }
 
   return (
     <form onSubmit={handleSearch}>
-      <label>Name:</label>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <label>Artist</label>
+      <input type="text" {...searchInput} />
       <button type="submit">Submit</button>
     </form>
   );

@@ -1,17 +1,5 @@
 import React from "react";
-import { createResource } from "./createResource";
-
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-const AlbumsResource = createResource(searchTerm =>
-  wait(2000).then(() =>
-    fetch(
-      `https://itunes.apple.com/search?term=${searchTerm}&media=music&entity=album`
-    )
-      .then(res => res.json())
-      .then(data => data.results)
-  )
-);
+import AlbumsResource from "./resources/AlbumsResource";
 
 const AlbumList = ({ searchTerm }) => {
   const hasSearchTerm = searchTerm.length > 0;
